@@ -1,5 +1,5 @@
 //
-//  Pets_VC.swift
+//  Landing_VC.swift
 //  WorkmanCiera_HealthyPawz
 //
 //  Created by Ciera on 1/21/20.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class Pets_VC: UIViewController {
+class Landing_VC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
     }
     
 

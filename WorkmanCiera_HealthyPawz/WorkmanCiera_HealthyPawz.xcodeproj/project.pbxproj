@@ -16,6 +16,10 @@
 		F156A8CE1506523CF313C774 /* Pods_WorkmanCiera_HealthyPawz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92917F71A5BDE4D647131F61 /* Pods_WorkmanCiera_HealthyPawz.framework */; };
 		F1A1728423D8077300DCBEDC /* Pets_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1728323D8077300DCBEDC /* Pets_VC.swift */; };
 		F1A1728623D8078700DCBEDC /* Providers_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1728523D8078700DCBEDC /* Providers_VC.swift */; };
+		F1A1728D23D829D500DCBEDC /* Login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1728C23D829D500DCBEDC /* Login_VC.swift */; };
+		F1A1728F23D829E900DCBEDC /* SignUp_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1728E23D829E900DCBEDC /* SignUp_VC.swift */; };
+		F1A1729123D82A0200DCBEDC /* Landing_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1729023D82A0200DCBEDC /* Landing_VC.swift */; };
+		F1A1729323D832C700DCBEDC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1A1729223D832C700DCBEDC /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		F129800123D2550C00E3736E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1A1728323D8077300DCBEDC /* Pets_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets_VC.swift; sourceTree = "<group>"; };
 		F1A1728523D8078700DCBEDC /* Providers_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers_VC.swift; sourceTree = "<group>"; };
+		F1A1728C23D829D500DCBEDC /* Login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_VC.swift; sourceTree = "<group>"; };
+		F1A1728E23D829E900DCBEDC /* SignUp_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp_VC.swift; sourceTree = "<group>"; };
+		F1A1729023D82A0200DCBEDC /* Landing_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landing_VC.swift; sourceTree = "<group>"; };
+		F1A1729223D832C700DCBEDC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,7 @@
 		F1297FDF23D2543200E3736E = {
 			isa = PBXGroup;
 			children = (
+				F1A1729223D832C700DCBEDC /* Default-568h@2x.png */,
 				F1297FEA23D2543300E3736E /* WorkmanCiera_HealthyPawz */,
 				F1297FE923D2543300E3736E /* Products */,
 				8526B004DDCE363E2FF7C8A2 /* Pods */,
@@ -85,10 +94,10 @@
 			isa = PBXGroup;
 			children = (
 				F1A1728923D807F000DCBEDC /* Delegates */,
+				F1A1728823D807D000DCBEDC /* ViewControllers */,
 				F1A1728A23D8080100DCBEDC /* Storyboards */,
 				F1297FF623D2543400E3736E /* Assets.xcassets */,
 				F1A1728B23D8082E00DCBEDC /* plists */,
-				F1A1728823D807D000DCBEDC /* ViewControllers */,
 			);
 			path = WorkmanCiera_HealthyPawz;
 			sourceTree = "<group>";
@@ -98,6 +107,9 @@
 			children = (
 				F1A1728323D8077300DCBEDC /* Pets_VC.swift */,
 				F1A1728523D8078700DCBEDC /* Providers_VC.swift */,
+				F1A1728C23D829D500DCBEDC /* Login_VC.swift */,
+				F1A1728E23D829E900DCBEDC /* SignUp_VC.swift */,
+				F1A1729023D82A0200DCBEDC /* Landing_VC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -192,6 +204,7 @@
 				F1297FFA23D2543400E3736E /* LaunchScreen.storyboard in Resources */,
 				F129800223D2550C00E3736E /* GoogleService-Info.plist in Resources */,
 				F1297FF723D2543400E3736E /* Assets.xcassets in Resources */,
+				F1A1729323D832C700DCBEDC /* Default-568h@2x.png in Resources */,
 				F1297FF523D2543300E3736E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,8 +260,11 @@
 			files = (
 				F1297FEC23D2543300E3736E /* AppDelegate.swift in Sources */,
 				F1297FEE23D2543300E3736E /* SceneDelegate.swift in Sources */,
+				F1A1728F23D829E900DCBEDC /* SignUp_VC.swift in Sources */,
+				F1A1729123D82A0200DCBEDC /* Landing_VC.swift in Sources */,
 				F1A1728423D8077300DCBEDC /* Pets_VC.swift in Sources */,
 				F1A1728623D8078700DCBEDC /* Providers_VC.swift in Sources */,
+				F1A1728D23D829D500DCBEDC /* Login_VC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
