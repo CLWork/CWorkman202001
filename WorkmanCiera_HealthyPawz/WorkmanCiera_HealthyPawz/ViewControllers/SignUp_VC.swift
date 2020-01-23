@@ -12,11 +12,15 @@ import Firebase
 
 class SignUp_VC: UIViewController {
 
+    //Outlets
     @IBOutlet weak var firstNameTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    
+    //Variables
+    let utilities = Utilities()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +49,8 @@ class SignUp_VC: UIViewController {
         let error = validateTextFields()
         if error != nil{
             displayError(error!)
-        } else{
+        }
+        else{
             
             //force upwraped because of validate method will check for empty fields.
             let firstName = firstNameTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -64,7 +69,7 @@ class SignUp_VC: UIViewController {
                 else {
                     //User created
                     
-                    
+                    self.performSegue(withIdentifier: "toAddPetsVC", sender: UIButton.self)
                 }
             }
             //Move to Home Screen
@@ -83,16 +88,10 @@ class SignUp_VC: UIViewController {
         
         let userPassword = passwordTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        if isPasswordValid(userPassword) == false{
+        if utilities.isPasswordValid(userPassword) == false{
              return "Passwords must be 8 characters with 1 number and 1 special character."
         }
         return nil
-    }
-    
-    //ensures password is valid and secure enough by requiring a length of 8, special character, and a number.
-    func isPasswordValid(_ password: String) -> Bool{
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
-        return passwordTest.evaluate(with: password)
     }
     
     //shows errors to the user
@@ -101,13 +100,9 @@ class SignUp_VC: UIViewController {
         errorLabel.alpha = 1
     }
     
+    //changes the root view controller in order to transition from login/sign-up to the home screen of the app.
     
-    
-    
-    
-    
-    
-    
+  
     
     /*
     // MARK: - Navigation

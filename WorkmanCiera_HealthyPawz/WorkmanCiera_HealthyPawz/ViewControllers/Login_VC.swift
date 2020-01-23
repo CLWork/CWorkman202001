@@ -16,6 +16,8 @@ class Login_VC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     
+    let utilities = Utilities()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //hides error label
@@ -41,17 +43,12 @@ class Login_VC: UIViewController {
                 
                 else {
                     //Transition!
-                    
+                    self.moveToHomeVC()
                 }
             }
             
         }
     }
-    
-    //return user back to landing page.
-    @IBAction func cancelTapped(_ sender: Any) {
-    }
-    
     
     //takes user to sign up page
     @IBAction func noAccountSignUpBttnTapped(_ sender: Any) {
@@ -69,18 +66,20 @@ class Login_VC: UIViewController {
         }
         let userPassword = passwordTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        if isPasswordValid(userPassword) == false{
+        if utilities.isPasswordValid(userPassword) == false{
             
             return "Passwords must be 8 characters with 1 number and 1 special character."
         }
         return nil
     }
     
-    //ensures password is valid and secure enough by requiring a length of 8, special character, and a number.
-    func isPasswordValid(_ password: String) -> Bool{
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
-        return passwordTest.evaluate(with: password)
+    func moveToHomeVC(){
+        let homeViewController = storyboard?.instantiateViewController(identifier: "toHome") as? UITabBarController
+        
+        view.window?.rootViewController = homeViewController
+        view.window?.makeKeyAndVisible()
     }
+
     /*
      // MARK: - Navigation
      
