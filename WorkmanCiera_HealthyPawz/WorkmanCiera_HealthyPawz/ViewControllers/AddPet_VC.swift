@@ -41,7 +41,13 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     //MARK: Actions
     @IBAction func addPetTapped(_ sender: Any) {
-        
+        let error = validateFields()
+        if error != nil{
+            
+        } else
+        {
+            
+        }
     }
     
     //Pulls up the image library on the device and allows a user to select an image
@@ -61,6 +67,11 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         
         return nil
+    }
+    
+    //lets the user know something is wrong when a field is empty or something is not selected.
+    func alert(){
+        
     }
     
     //Changes root controller so the authenticated user gets access to the full app.
