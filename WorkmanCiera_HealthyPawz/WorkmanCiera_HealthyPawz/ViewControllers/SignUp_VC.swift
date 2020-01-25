@@ -69,7 +69,7 @@ class SignUp_VC: UIViewController {
                 else {
                     //User created
                     
-                    self.performSegue(withIdentifier: "toAddPetsVC", sender: UIButton.self)
+                    self.performSegue(withIdentifier: "toAddPetVC", sender: UIButton.self)
                 }
             }
             //Move to Home Screen
