@@ -454,24 +454,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HMd-Qz-3Z6">
-                                <rect key="frame" x="56.5" y="195" width="262.5" height="386"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="HMd-Qz-3Z6">
+                                <rect key="frame" x="56.5" y="223.5" width="262.5" height="329.5"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZu-dM-X4t">
+                                        <rect key="frame" x="0.0" y="0.0" width="262.5" height="30"/>
+                                        <state key="normal" title="Add Image">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addImageTapped:" destination="Xw9-sf-cqx" eventType="touchUpInside" id="Tr0-mX-0br"/>
+                                        </connections>
+                                    </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pet Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w3Z-fJ-eow" userLabel="nameTF">
-                                        <rect key="frame" x="0.0" y="0.0" width="262.5" height="34"/>
+                                        <rect key="frame" x="0.0" y="45" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BAl-Ji-YTV">
-                                        <rect key="frame" x="0.0" y="54" width="262.5" height="34"/>
+                                        <rect key="frame" x="0.0" y="94" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-Id-Blf">
-                                        <rect key="frame" x="0.0" y="108" width="262.5" height="216"/>
+                                        <rect key="frame" x="0.0" y="143" width="262.5" height="129.5"/>
                                     </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTL-Ju-ch9">
-                                        <rect key="frame" x="0.0" y="344" width="262.5" height="42"/>
+                                        <rect key="frame" x="0.0" y="287.5" width="262.5" height="42"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <state key="normal" title="Add Pet">
                                             <color key="titleColor" red="0.90980392160000001" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -481,6 +490,16 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="MZu-dM-X4t"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="MZu-dM-X4t"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2D-D6-gCO">
                                 <rect key="frame" x="0.0" y="375" width="375" height="216"/>
@@ -492,9 +511,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.91372549020000005" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="QFb-Id-Blf" firstAttribute="height" secondItem="Jqm-1x-GF6" secondAttribute="height" multiplier="0.2" id="9R2-ef-aIE"/>
                             <constraint firstItem="w2M-bf-Meb" firstAttribute="centerY" secondItem="af3-YT-oKL" secondAttribute="centerY" multiplier="0.3" id="CMU-2P-fTo"/>
                             <constraint firstItem="w2M-bf-Meb" firstAttribute="centerX" secondItem="af3-YT-oKL" secondAttribute="centerX" id="EzC-Hm-yHD"/>
                             <constraint firstItem="w2M-bf-Meb" firstAttribute="height" secondItem="Jqm-1x-GF6" secondAttribute="height" multiplier="0.197836" id="JJ6-gh-d7U"/>
+                            <constraint firstItem="QFb-Id-Blf" firstAttribute="width" secondItem="Jqm-1x-GF6" secondAttribute="width" multiplier="0.2" id="Sw2-xo-rEF"/>
                             <constraint firstItem="HMd-Qz-3Z6" firstAttribute="width" secondItem="Jqm-1x-GF6" secondAttribute="width" multiplier="0.7" id="VsX-iM-RJd"/>
                             <constraint firstItem="HMd-Qz-3Z6" firstAttribute="centerX" secondItem="af3-YT-oKL" secondAttribute="centerX" id="lfm-fd-9cO"/>
                             <constraint firstItem="w2M-bf-Meb" firstAttribute="width" secondItem="Jqm-1x-GF6" secondAttribute="width" multiplier="0.7" id="qmq-VI-5O0"/>
@@ -515,6 +536,8 @@
                                 <exclude reference="VsX-iM-RJd"/>
                                 <exclude reference="lfm-fd-9cO"/>
                                 <exclude reference="xPM-uD-GeX"/>
+                                <exclude reference="9R2-ef-aIE"/>
+                                <exclude reference="Sw2-xo-rEF"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -531,6 +554,8 @@
                                 <include reference="VsX-iM-RJd"/>
                                 <include reference="lfm-fd-9cO"/>
                                 <include reference="xPM-uD-GeX"/>
+                                <include reference="9R2-ef-aIE"/>
+                                <exclude reference="Sw2-xo-rEF"/>
                             </mask>
                         </variation>
                     </view>

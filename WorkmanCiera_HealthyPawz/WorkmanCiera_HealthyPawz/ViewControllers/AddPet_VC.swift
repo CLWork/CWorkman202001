@@ -15,21 +15,21 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var ageTF: UITextField!
     @IBOutlet weak var breedPicker: UIPickerView!
     @IBOutlet weak var petImageView: UIImageView!
+
     
     //Variables
     let imagePicker = UIImagePickerController()
     var breedArray = [String]()
     var selectedBreed = ""
+    var genderArray = [String]()
+    var selectedGender = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //allows user to tap image view
-        let tap = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:)))
-        petImageView.addGestureRecognizer(tap)
         
-        breedArray = ["Cat", "Dog", "Bird", "Rabbit", "Rodent", "Ferret"]
-        
+        breedArray = ["Breed:","Cat", "Dog", "Bird", "Rabbit", "Rodent", "Ferret"]
+        genderArray = ["Gender:", "Male", "Female", "Male Neutered", "Female Spayed"]
         
         breedPicker.delegate = self
         breedPicker.dataSource = self
@@ -44,23 +44,23 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
     }
     
-    @objc func imageViewTapped(_ sender: UITapGestureRecognizer){
+    //Pulls up the image library on the device and allows a user to select an image
+    @IBAction func addImageTapped(_ sender: Any) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
         
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-            print("Button capture")
-            
-            
-            present(imagePicker, animated: true, completion: nil)
-        } else {
-            print("No saved photos available.")
-        }
+        present(imagePicker, animated: true, completion: nil)
     }
     
+    
     //MARK: Helper Methods
-    func validateFields(){
+    func validateFields() -> String?{
         
-       
+        if selectedGender == "" || selectedGender == "Gender:" || selectedBreed == "" || selectedBreed == "Breed"{
+            return ""
+        }
         
+        return nil
     }
     
     //Changes root controller so the authenticated user gets access to the full app.
@@ -75,7 +75,6 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-               petImageView.contentMode = .scaleAspectFit
                petImageView.image = pickedImage
            }
         
@@ -89,22 +88,49 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     //tells picker view how many columns
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     //tells picker how many rows in each column
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return breedArray.count
+        
+        switch component{
+        case 0:
+            return breedArray.count
+        case 1:
+            return genderArray.count
+        default:
+            print("Error!")
+            return 1
+        }
     }
     
     //pulls title for selected row
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return breedArray[row]
+        switch component{
+        case 0:
+            return breedArray[row]
+        case 1:
+            
+            return genderArray[row]
+        default:
+            print("Error!")
+            return breedArray[row]
+        }
+        
     }
     
     // Capture the picker view selection
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedBreed = breedArray[row]
+       switch component{
+       case 0:
+           selectedBreed = breedArray[row]
         print(selectedBreed)
+       case 1:
+           selectedGender = genderArray[row]
+        print(selectedGender)
+       default:
+           print("Error!")
+       }
     }
 }
