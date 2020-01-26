@@ -97,12 +97,12 @@
                                                     <exclude reference="dVd-R2-WF7"/>
                                                     <exclude reference="fP3-Km-Wte"/>
                                                     <exclude reference="lhU-bg-BIn"/>
-                                                    <exclude reference="QGt-nk-IYI"/>
-                                                    <exclude reference="Tej-lu-MNd"/>
                                                     <exclude reference="Qmv-5t-JLB"/>
                                                     <exclude reference="Yw9-Kp-7w3"/>
                                                     <exclude reference="cnv-j4-mFa"/>
                                                     <exclude reference="qUq-Mp-UuP"/>
+                                                    <exclude reference="QGt-nk-IYI"/>
+                                                    <exclude reference="Tej-lu-MNd"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -125,12 +125,12 @@
                                                     <exclude reference="dVd-R2-WF7"/>
                                                     <include reference="fP3-Km-Wte"/>
                                                     <include reference="lhU-bg-BIn"/>
-                                                    <include reference="QGt-nk-IYI"/>
-                                                    <include reference="Tej-lu-MNd"/>
                                                     <include reference="Qmv-5t-JLB"/>
                                                     <include reference="Yw9-Kp-7w3"/>
                                                     <include reference="cnv-j4-mFa"/>
                                                     <include reference="qUq-Mp-UuP"/>
+                                                    <include reference="QGt-nk-IYI"/>
+                                                    <include reference="Tej-lu-MNd"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -160,13 +160,13 @@
                                 <exclude reference="HgE-4r-IyA"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Gsf-Aw-poZ"/>
+                                <exclude reference="nZ4-hL-Ca8"/>
                                 <exclude reference="Dz1-PP-bGr"/>
                                 <exclude reference="o9J-M6-oEa"/>
                                 <exclude reference="Bue-mv-2ms"/>
                                 <exclude reference="N03-5S-ePm"/>
                                 <exclude reference="g2f-l4-hA3"/>
-                                <exclude reference="Gsf-Aw-poZ"/>
-                                <exclude reference="nZ4-hL-Ca8"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -174,13 +174,13 @@
                                 <include reference="HgE-4r-IyA"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Gsf-Aw-poZ"/>
+                                <include reference="nZ4-hL-Ca8"/>
                                 <include reference="Dz1-PP-bGr"/>
                                 <include reference="o9J-M6-oEa"/>
                                 <include reference="Bue-mv-2ms"/>
                                 <include reference="N03-5S-ePm"/>
                                 <include reference="g2f-l4-hA3"/>
-                                <include reference="Gsf-Aw-poZ"/>
-                                <include reference="nZ4-hL-Ca8"/>
                             </mask>
                         </variation>
                     </view>
@@ -265,8 +265,6 @@
                                 <exclude reference="aMC-LB-5Ge"/>
                                 <exclude reference="bnC-nK-q2P"/>
                                 <exclude reference="kEE-5C-Ce3"/>
-                                <exclude reference="7UL-xS-hCG"/>
-                                <exclude reference="YIl-2Q-i0W"/>
                                 <exclude reference="B1Q-Zr-TVl"/>
                                 <exclude reference="HGm-pJ-wUp"/>
                                 <exclude reference="Hmu-WH-FdY"/>
@@ -281,6 +279,8 @@
                                 <exclude reference="KvS-Ri-wIn"/>
                                 <exclude reference="Oh6-Co-u19"/>
                                 <exclude reference="gea-IT-z21"/>
+                                <exclude reference="7UL-xS-hCG"/>
+                                <exclude reference="YIl-2Q-i0W"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -298,8 +298,6 @@
                                 <exclude reference="aMC-LB-5Ge"/>
                                 <exclude reference="bnC-nK-q2P"/>
                                 <include reference="kEE-5C-Ce3"/>
-                                <exclude reference="7UL-xS-hCG"/>
-                                <include reference="YIl-2Q-i0W"/>
                                 <include reference="B1Q-Zr-TVl"/>
                                 <include reference="HGm-pJ-wUp"/>
                                 <include reference="Hmu-WH-FdY"/>
@@ -314,6 +312,8 @@
                                 <include reference="KvS-Ri-wIn"/>
                                 <include reference="Oh6-Co-u19"/>
                                 <include reference="gea-IT-z21"/>
+                                <exclude reference="7UL-xS-hCG"/>
+                                <include reference="YIl-2Q-i0W"/>
                             </mask>
                         </variation>
                     </view>
@@ -429,26 +429,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="H2S-5r-0wc">
-                                <rect key="frame" x="56.5" y="256" width="262.5" height="264"/>
+                                <rect key="frame" x="56.5" y="278.5" width="262.5" height="219"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5TW-Rb-LEj" userLabel="emailTF">
                                         <rect key="frame" x="0.0" y="0.0" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="doy-d3-09d" userLabel="passwordTF">
                                         <rect key="frame" x="0.0" y="59" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2dt-fr-d99" userLabel="errorLabel">
-                                        <rect key="frame" x="0.0" y="118" width="262.5" height="20"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYs-dc-i90" userLabel="loginBttn">
-                                        <rect key="frame" x="0.0" y="163" width="262.5" height="42"/>
+                                        <rect key="frame" x="0.0" y="118" width="262.5" height="42"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <state key="normal" title="Login">
                                             <color key="titleColor" red="0.90980392160000001" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -458,14 +452,13 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dND-NW-vYE" userLabel="cancelBttn">
-                                        <rect key="frame" x="0.0" y="230" width="262.5" height="34"/>
+                                        <rect key="frame" x="0.0" y="185" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="cancelTapped:" destination="Tme-wa-AfZ" eventType="touchUpInside" id="D8D-zL-s1p"/>
-                                            <segue destination="cyg-8N-BTb" kind="show" id="g6m-IF-3JY"/>
+                                            <segue destination="cyg-8N-BTb" kind="show" id="Cs1-U3-s1N"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -533,7 +526,6 @@
                     <navigationItem key="navigationItem" id="im0-hE-MGw"/>
                     <connections>
                         <outlet property="emailTF" destination="5TW-Rb-LEj" id="6aA-vm-4xR"/>
-                        <outlet property="errorLabel" destination="2dt-fr-d99" id="mci-Qf-eyQ"/>
                         <outlet property="passwordTF" destination="doy-d3-09d" id="wua-Rf-yDP"/>
                     </connections>
                 </viewController>
@@ -567,36 +559,30 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Khk-2r-Xem">
-                                <rect key="frame" x="56.5" y="244.5" width="262.5" height="352"/>
+                                <rect key="frame" x="56.5" y="264.5" width="262.5" height="312"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ccy-yz-Rqy" userLabel="firstNameTF">
                                         <rect key="frame" x="0.0" y="0.0" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mPI-xG-Hwf" userLabel="lastNameTF">
                                         <rect key="frame" x="0.0" y="54" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ODx-ce-25W" userLabel="emailTF">
                                         <rect key="frame" x="0.0" y="108" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sCq-UZ-Wte" userLabel="passwordTF">
                                         <rect key="frame" x="0.0" y="162" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="He0-S9-g2h" userLabel="errorLabel">
-                                        <rect key="frame" x="0.0" y="216" width="262.5" height="20"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvD-0i-POM" userLabel="signUpBttn">
-                                        <rect key="frame" x="0.0" y="256" width="262.5" height="42"/>
+                                        <rect key="frame" x="0.0" y="216" width="262.5" height="42"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" red="0.90980392160000001" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -606,25 +592,17 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmg-3s-aNb" userLabel="cancelBttn">
-                                        <rect key="frame" x="0.0" y="318" width="262.5" height="34"/>
+                                        <rect key="frame" x="0.0" y="278" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="cancelTapped:" destination="UaY-Ly-QXR" eventType="touchUpInside" id="b3Q-vG-6Pm"/>
                                             <segue destination="cyg-8N-BTb" kind="show" id="JiT-Gp-izs"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTK-og-CnW">
-                                <rect key="frame" x="128" y="438" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.91372549020000005" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -651,14 +629,13 @@
                                 <exclude reference="unF-cp-dns"/>
                                 <exclude reference="kAv-GK-GBm"/>
                                 <exclude reference="22C-jt-BbG"/>
-                                <exclude reference="kTK-og-CnW"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="xPf-Nj-1sZ"/>
                                 <exclude reference="DUB-vB-CiP"/>
                                 <exclude reference="IgA-lf-rSS"/>
                                 <exclude reference="JMA-Oi-WcA"/>
                                 <exclude reference="p10-a2-ffe"/>
+                                <exclude reference="xPf-Nj-1sZ"/>
                                 <exclude reference="DSJ-ge-DpJ"/>
                                 <exclude reference="GIy-xr-8My"/>
                                 <exclude reference="KHU-ow-9FF"/>
@@ -672,14 +649,13 @@
                                 <include reference="unF-cp-dns"/>
                                 <include reference="kAv-GK-GBm"/>
                                 <include reference="22C-jt-BbG"/>
-                                <exclude reference="kTK-og-CnW"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="xPf-Nj-1sZ"/>
                                 <include reference="DUB-vB-CiP"/>
                                 <include reference="IgA-lf-rSS"/>
                                 <include reference="JMA-Oi-WcA"/>
                                 <include reference="p10-a2-ffe"/>
+                                <include reference="xPf-Nj-1sZ"/>
                                 <include reference="DSJ-ge-DpJ"/>
                                 <include reference="GIy-xr-8My"/>
                                 <include reference="KHU-ow-9FF"/>
@@ -692,7 +668,6 @@
                     <navigationItem key="navigationItem" id="Isi-BE-KMw"/>
                     <connections>
                         <outlet property="emailTF" destination="ODx-ce-25W" id="CIG-vY-FWp"/>
-                        <outlet property="errorLabel" destination="He0-S9-g2h" id="b1t-Qb-XHQ"/>
                         <outlet property="firstNameTF" destination="ccy-yz-Rqy" id="1lO-YY-NJp"/>
                         <outlet property="lastNameTF" destination="mPI-xG-Hwf" id="aD1-hS-MeF"/>
                         <outlet property="passwordTF" destination="sCq-UZ-Wte" id="ut9-cf-BkF"/>
@@ -712,7 +687,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="HMd-Qz-3Z6">
-                                <rect key="frame" x="56.5" y="239.5" width="262.5" height="297"/>
+                                <rect key="frame" x="56.5" y="215" width="262.5" height="346.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZu-dM-X4t">
                                         <rect key="frame" x="0.0" y="0.0" width="262.5" height="30"/>
@@ -726,18 +701,41 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pet Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w3Z-fJ-eow" userLabel="nameTF">
                                         <rect key="frame" x="0.0" y="45" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BAl-Ji-YTV">
                                         <rect key="frame" x="0.0" y="94" width="262.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lnp-NW-fsp">
+                                        <rect key="frame" x="0.0" y="143" width="262.5" height="34.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00lbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBJ-b7-AhF" userLabel="weightLabel">
+                                                <rect key="frame" x="0.0" y="0.0" width="168.5" height="34.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zyP-Dn-r76">
+                                                <rect key="frame" x="168.5" y="0.0" width="94" height="34.5"/>
+                                                <connections>
+                                                    <action selector="stepperValueChanged:" destination="Xw9-sf-cqx" eventType="valueChanged" id="Dhj-bZ-Alx"/>
+                                                </connections>
+                                            </stepper>
+                                        </subviews>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="NBJ-b7-AhF"/>
+                                                <include reference="zyP-Dn-r76"/>
+                                            </mask>
+                                        </variation>
+                                    </stackView>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-Id-Blf">
-                                        <rect key="frame" x="0.0" y="143" width="262" height="97"/>
+                                        <rect key="frame" x="0.0" y="192.5" width="262.5" height="97"/>
                                     </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTL-Ju-ch9">
-                                        <rect key="frame" x="0.0" y="255" width="262.5" height="42"/>
+                                        <rect key="frame" x="0.0" y="304.5" width="262.5" height="42"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <state key="normal" title="Add Pet">
                                             <color key="titleColor" red="0.90980392160000001" green="0.46666666670000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -747,21 +745,30 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Lnp-NW-fsp" firstAttribute="width" secondItem="HMd-Qz-3Z6" secondAttribute="width" id="4yg-g5-3hk"/>
+                                    <constraint firstItem="Lnp-NW-fsp" firstAttribute="height" secondItem="HMd-Qz-3Z6" secondAttribute="height" multiplier="0.1" id="h8A-DU-O3E"/>
+                                </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="MZu-dM-X4t"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="4yg-g5-3hk"/>
+                                        <exclude reference="h8A-DU-O3E"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
                                         <include reference="MZu-dM-X4t"/>
+                                        <include reference="Lnp-NW-fsp"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="4yg-g5-3hk"/>
+                                        <include reference="h8A-DU-O3E"/>
                                     </mask>
                                 </variation>
                             </stackView>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2D-D6-gCO">
-                                <rect key="frame" x="0.0" y="375" width="375" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="w2M-bf-Meb">
                                 <rect key="frame" x="56.5" y="42" width="262.5" height="155.5"/>
                             </imageView>
@@ -772,7 +779,6 @@
                             <constraint firstItem="w2M-bf-Meb" firstAttribute="centerY" secondItem="af3-YT-oKL" secondAttribute="centerY" multiplier="0.37" id="CMU-2P-fTo"/>
                             <constraint firstItem="w2M-bf-Meb" firstAttribute="centerX" secondItem="af3-YT-oKL" secondAttribute="centerX" id="EzC-Hm-yHD"/>
                             <constraint firstItem="w2M-bf-Meb" firstAttribute="height" secondItem="Jqm-1x-GF6" secondAttribute="height" multiplier="0.24" id="JJ6-gh-d7U"/>
-                            <constraint firstItem="QFb-Id-Blf" firstAttribute="width" secondItem="Jqm-1x-GF6" secondAttribute="width" multiplier="0.2" id="Sw2-xo-rEF"/>
                             <constraint firstItem="HMd-Qz-3Z6" firstAttribute="width" secondItem="Jqm-1x-GF6" secondAttribute="width" multiplier="0.7" id="VsX-iM-RJd"/>
                             <constraint firstItem="HMd-Qz-3Z6" firstAttribute="centerX" secondItem="af3-YT-oKL" secondAttribute="centerX" id="lfm-fd-9cO"/>
                             <constraint firstItem="w2M-bf-Meb" firstAttribute="width" secondItem="Jqm-1x-GF6" secondAttribute="width" multiplier="0.7" id="qmq-VI-5O0"/>
@@ -782,7 +788,6 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="HMd-Qz-3Z6"/>
-                                <exclude reference="u2D-D6-gCO"/>
                                 <exclude reference="w2M-bf-Meb"/>
                             </mask>
                             <mask key="constraints">
@@ -794,13 +799,11 @@
                                 <exclude reference="lfm-fd-9cO"/>
                                 <exclude reference="xPM-uD-GeX"/>
                                 <exclude reference="9R2-ef-aIE"/>
-                                <exclude reference="Sw2-xo-rEF"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="HMd-Qz-3Z6"/>
-                                <exclude reference="u2D-D6-gCO"/>
                                 <include reference="w2M-bf-Meb"/>
                             </mask>
                             <mask key="constraints">
@@ -812,7 +815,6 @@
                                 <include reference="lfm-fd-9cO"/>
                                 <include reference="xPM-uD-GeX"/>
                                 <include reference="9R2-ef-aIE"/>
-                                <exclude reference="Sw2-xo-rEF"/>
                             </mask>
                         </variation>
                     </view>
@@ -822,6 +824,8 @@
                         <outlet property="breedPicker" destination="QFb-Id-Blf" id="GLX-yZ-dr7"/>
                         <outlet property="nameTF" destination="w3Z-fJ-eow" id="Bg1-vV-iEL"/>
                         <outlet property="petImageView" destination="w2M-bf-Meb" id="4NU-DN-InD"/>
+                        <outlet property="stepper" destination="zyP-Dn-r76" id="5Yc-cp-wCH"/>
+                        <outlet property="weightLabel" destination="NBJ-b7-AhF" id="0Q9-Ue-BVJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ru-kA-N2t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

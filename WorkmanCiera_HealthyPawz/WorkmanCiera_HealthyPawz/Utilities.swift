@@ -16,7 +16,17 @@ class Utilities{
            return passwordTest.evaluate(with: password)
        }
     
-    // TODO: email validation here
+    // Email validation here
+    func isEmailVallid(_ email: String) -> Bool{
+        if email.contains("@") && (email.contains(".com") || email.contains(".net") || email.contains(".org") || email.contains(".edu")){
+             return true
+        } else
+        {
+            return false
+        }
+       
+    }
+       
 }
 
 

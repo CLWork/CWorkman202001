@@ -14,21 +14,24 @@ class Login_VC: UIViewController {
     
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
-    @IBOutlet weak var errorLabel: UILabel!
-    
+
     let utilities = Utilities()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //hides error label
-        errorLabel.alpha = 0
         
     }
+    
     // MARK: Actions
+    
+    //authenticates user
     @IBAction func loginTapped(_ sender: Any) {
         
         let error = validateTextFields()
         if error != nil{
+            
+            //unwrapping error because it has already been nil checked!
+            alert(error!)
             
         } else{
             
@@ -37,8 +40,7 @@ class Login_VC: UIViewController {
             
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if error != nil{
-                    self.errorLabel.text = error!.localizedDescription
-                    self.errorLabel.alpha = 1
+                    self.alert("Unable to sign in.")
                 }
                 
                 else {
@@ -50,7 +52,7 @@ class Login_VC: UIViewController {
         }
     }
     
-    //takes user to sign up page
+    //takes user to sign up page when they click the Sign Up button at the bottom of the page.
     @IBAction func noAccountSignUpBttnTapped(_ sender: Any) {
         
         performSegue(withIdentifier: "toSignUp", sender: nil)
@@ -73,11 +75,21 @@ class Login_VC: UIViewController {
         return nil
     }
     
+    //changes root controller to tab bar controller.
     func moveToHomeVC(){
         let homeViewController = storyboard?.instantiateViewController(identifier: "toHome") as? UITabBarController
         
         view.window?.rootViewController = homeViewController
         view.window?.makeKeyAndVisible()
+    }
+    
+    //uses an alert window to notify the user about an error.
+    func alert(_ message: String){
+        let alert = UIAlertController(title: "Oops!", message: "\(message)", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
+        
     }
 
     /*

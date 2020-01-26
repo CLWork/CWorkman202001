@@ -12,17 +12,21 @@ class Pets{
     
     //Member variables
     //Required information
+    var uid: String
     var name: String
     var species: String
     var age: Int
+    var weight: Int
     
-    //Optional information
+    //Optional Information
     var imgURL: String?
     
-    
-    init(name: String, species: String, age: Int){
+    //initializer
+    init(uid: String, name: String, species: String, age: Int, weight: Int){
+        self.uid = uid
         self.name = name
         self.species = species
         self.age = age
+        self.weight = weight
     }
 }

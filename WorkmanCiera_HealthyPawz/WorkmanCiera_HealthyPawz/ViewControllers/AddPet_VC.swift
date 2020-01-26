@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource {
 
@@ -15,7 +17,9 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var ageTF: UITextField!
     @IBOutlet weak var breedPicker: UIPickerView!
     @IBOutlet weak var petImageView: UIImageView!
-
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var stepper: UIStepper!
+    
     
     //Variables
     let imagePicker = UIImagePickerController()
@@ -23,11 +27,16 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     var selectedBreed = ""
     var genderArray = [String]()
     var selectedGender = ""
+    var ref: DatabaseReference!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        //reference database
+        ref = Database.database().reference()
+        
+        //Populate arrays for the picker
         breedArray = ["Breed:","Cat", "Dog", "Bird", "Rabbit", "Rodent", "Ferret"]
         genderArray = ["Gender:", "Male", "Female", "Male Neutered", "Female Spayed"]
         
@@ -37,16 +46,42 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imagePicker.delegate = self
         imagePicker.sourceType = .savedPhotosAlbum
         imagePicker.allowsEditing = false
+        
+        stepper.wraps = true
+        stepper.autorepeat = true
     }
     
     //MARK: Actions
     @IBAction func addPetTapped(_ sender: Any) {
         let error = validateFields()
+        
         if error != nil{
             
-        } else
+            alert(error!)
+        }
+        else
         {
             
+            let petName = nameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            let age = ageTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            let weight = stepper.value.description
+            
+            //Saves Pet data within the user's UID node in the database.
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let uid = user.uid
+                
+                self.ref.child("Users/\(uid)/Pets/petName").setValue(petName)
+                self.ref.child("Users/\(uid)/Pets/age").setValue(age)
+                self.ref.child("Users/\(uid)/Pets/weight").setValue(weight)
+                self.ref.child("Users/\(uid)/Pets/species").setValue(selectedBreed)
+                self.ref.child("Users/\(uid)/Pets/gender").setValue(selectedGender)
+                
+                self.moveToHomeVC()
+            } else{
+                
+                self.alert("Unable to add User's full name to profile.")
+            }
         }
     }
     
@@ -58,19 +93,28 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         present(imagePicker, animated: true, completion: nil)
     }
     
+    //Updates the weight label with the value of the stepper
+    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        
+        weightLabel.text = Int(sender.value).description + "lb"
+    }
     
     //MARK: Helper Methods
     func validateFields() -> String?{
         
-        if selectedGender == "" || selectedGender == "Gender:" || selectedBreed == "" || selectedBreed == "Breed"{
-            return ""
+        if selectedGender == "" || selectedGender == "Gender:" || selectedBreed == "" || selectedBreed == "Breed" || nameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
+            return "You must enter a name for your pet, select a species, and a gender!"
         }
         
         return nil
     }
     
     //lets the user know something is wrong when a field is empty or something is not selected.
-    func alert(){
+    func alert(_ message: String){
+        let alert = UIAlertController(title: "Oops!", message: "\(message)", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -83,6 +127,8 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
      //MARK: Protocols
+    
+    //user picks an image and populates the image view
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
