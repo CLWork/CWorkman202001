@@ -67,8 +67,8 @@ class SignUp_VC: UIViewController {
                     if let user = user {
                         let uid = user.uid
                         
-                        self.ref.child("users/\(uid)/firstName").setValue(fName)
-                        self.ref.child("users/\(uid)/lastName").setValue(lName)
+                        self.ref.child("Users/\(uid)/firstName").setValue(fName)
+                        self.ref.child("Users/\(uid)/lastName").setValue(lName)
                         
                         self.performSegue(withIdentifier: "toAddPetVC", sender: UIButton.self)
                     } else{

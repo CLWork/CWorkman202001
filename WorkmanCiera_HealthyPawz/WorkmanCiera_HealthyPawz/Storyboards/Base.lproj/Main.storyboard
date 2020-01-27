@@ -335,7 +335,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="mH6-la-h5a" userLabel="logoImage">
-                                <rect key="frame" x="67.5" y="16" width="240" height="194.50000000000011"/>
+                                <rect key="frame" x="67.5" y="16" width="240" height="194.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HealthyPawz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5O-Km-RfN">
                                 <rect key="frame" x="85.5" y="235" width="204" height="47.5"/>
@@ -420,7 +420,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="FSm-Ol-edK">
-                                <rect key="frame" x="67.5" y="32.5" width="240" height="194.00000000000011"/>
+                                <rect key="frame" x="67.5" y="32.5" width="240" height="194"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKN-qP-x1F">
                                 <rect key="frame" x="60.5" y="622" width="160" height="18"/>
@@ -542,7 +542,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="unF-cp-dns">
-                                <rect key="frame" x="65.5" y="32.5" width="244" height="194.00000000000011"/>
+                                <rect key="frame" x="65.5" y="32.5" width="244" height="194"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAv-GK-GBm">
                                 <rect key="frame" x="89.5" y="622" width="121" height="18"/>

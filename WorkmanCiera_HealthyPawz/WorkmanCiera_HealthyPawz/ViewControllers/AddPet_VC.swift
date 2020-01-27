@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource {
 
@@ -28,7 +29,9 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     var genderArray = [String]()
     var selectedGender = ""
     var ref: DatabaseReference!
-    
+    var storage = Storage.storage()
+    var storageRef = Storage.storage().reference()
+    var petImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,10 +80,14 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.ref.child("Users/\(uid)/Pets/species").setValue(selectedBreed)
                 self.ref.child("Users/\(uid)/Pets/gender").setValue(selectedGender)
                 
+                if petImage != nil{
+                    uploadImage(uid)
+                }
+                
                 self.moveToHomeVC()
             } else{
                 
-                self.alert("Unable to add User's full name to profile.")
+                self.alert("Unable to add pet information.")
             }
         }
     }
@@ -126,6 +133,22 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         view.window?.makeKeyAndVisible()
     }
     
+    func uploadImage(_ userID: String){
+        let uploadReference = Storage.storage().reference(withPath: "images/\(userID)")
+        guard let imageData = petImageView.image?.jpegData(compressionQuality: 0.75) else {return}
+        
+        let uploadMetadata = StorageMetadata.init()
+        uploadMetadata.contentType = "image/jpeg"
+        
+        uploadReference.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
+            if let error = error{
+                self.alert(error.localizedDescription)
+            } else{
+                print("Completed! Got this back: \(String(describing: downloadMetadata))")
+            }
+        }
+    }
+    
      //MARK: Protocols
     
     //user picks an image and populates the image view
@@ -133,6 +156,8 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                petImageView.image = pickedImage
+               petImage = pickedImage
+            
            }
         
            dismiss(animated: true, completion: nil)
