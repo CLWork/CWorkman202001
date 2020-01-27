@@ -18,18 +18,17 @@
     - Notes tab  
     - History tab  
     - Graph tab  
-    - Medication history tab  
-      
-    ### Providers:  
-      - Add providers  
-      - Delete providers  
-      - See provider contact information (phone number, website)  
-      - Use Google Maps API to dectect nearby providers to obtain information like addresses.  
-        
-    ## Research Points:  
-        - Firebase and Firebase Authentication  
-        - Charts  
-        - Secondary Tab Navigation (Pet Profile)  
-        - Helpful Pods  
-        - Google Map API usage
+    - Medication history tab 
+    - Editing Ability
 
+    ###   Settings
+    - Logout
+    - Edit User Profile
+        
+   ## Research Points:  
+       - Firebase and Firebase Authentication (Implemented)
+       - Firebase Storage (Implemented)
+       - Charts  
+       - Secondary Tab Navigation (Pet Profile)  
+       - Helpful Pods  
+        
