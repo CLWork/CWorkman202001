@@ -18,9 +18,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var ageTF: UITextField!
     @IBOutlet weak var breedPicker: UIPickerView!
     @IBOutlet weak var petImageView: UIImageView!
-    @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var stepper: UIStepper!
-    
+    @IBOutlet weak var weightTF: UITextField!
     
     //Variables
     let imagePicker = UIImagePickerController()
@@ -49,9 +47,6 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imagePicker.delegate = self
         imagePicker.sourceType = .savedPhotosAlbum
         imagePicker.allowsEditing = false
-        
-        stepper.wraps = true
-        stepper.autorepeat = true
     }
     
     //MARK: Actions
@@ -67,7 +62,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             
             let petName = nameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             let age = ageTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            let weight = stepper.value.description
+            let weight = weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             
             //Saves Pet data within the user's UID node in the database.
             let user = Auth.auth().currentUser
@@ -81,7 +76,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.ref.child("Users/\(uid)/Pets/gender").setValue(selectedGender)
                 
                 if petImage != nil{
-                    uploadImage(uid)
+                    uploadImage(uid, petName: petName!)
                 }
                 
                 self.moveToHomeVC()
@@ -100,17 +95,14 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         present(imagePicker, animated: true, completion: nil)
     }
     
-    //Updates the weight label with the value of the stepper
-    @IBAction func stepperValueChanged(_ sender: UIStepper) {
-        
-        weightLabel.text = Int(sender.value).description + "lb"
-    }
-    
     //MARK: Helper Methods
     func validateFields() -> String?{
         
-        if selectedGender == "" || selectedGender == "Gender:" || selectedBreed == "" || selectedBreed == "Breed" || nameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
-            return "You must enter a name for your pet, select a species, and a gender!"
+        let weightInt = Int(weightTF.text ?? "0")
+        
+        if selectedGender == "" || selectedGender == "Gender:" || selectedBreed == "" || selectedBreed == "Breed" || nameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" || weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "0" || weightInt == 0{
+            
+            return "You must enter a name for your pet, select a species, enter a weight above 0 and a gender!"
         }
         
         return nil
@@ -133,8 +125,9 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         view.window?.makeKeyAndVisible()
     }
     
-    func uploadImage(_ userID: String){
-        let uploadReference = Storage.storage().reference(withPath: "images/\(userID)")
+    //Uploads the selected image to the Cloud Storage, uses the loggedIn user's ID and pet name as a file name.
+    func uploadImage(_ userID: String, petName: String){
+        let uploadReference = Storage.storage().reference(withPath: "images/\(userID)" + "\(petName)")
         guard let imageData = petImageView.image?.jpegData(compressionQuality: 0.75) else {return}
         
         let uploadMetadata = StorageMetadata.init()
