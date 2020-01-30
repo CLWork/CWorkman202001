@@ -59,7 +59,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         else
         {
-            
+            //captures entered information after validation.
             let petName = nameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             let age = ageTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             let weight = weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -96,6 +96,8 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     //MARK: Helper Methods
+    
+    //checks for empty textfields and a weight value equaling 0 
     func validateFields() -> String?{
         
         let weightInt = Int(weightTF.text ?? "0")

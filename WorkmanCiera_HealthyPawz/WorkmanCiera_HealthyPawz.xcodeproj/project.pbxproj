@@ -22,7 +22,7 @@
 		F1A1729823D90E3000DCBEDC /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1729723D90E3000DCBEDC /* Utilities.swift */; };
 		F1A1729C23D9332200DCBEDC /* AddPet_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1729B23D9332200DCBEDC /* AddPet_VC.swift */; };
 		F1A1729E23DBF0F300DCBEDC /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1729D23DBF0F300DCBEDC /* HomeScreenCell.swift */; };
-		F1DDB60C23E00B9400BF073C /* Settings_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB60B23E00B9400BF073C /* Settings_VC.swift */; };
+		F1DDB60E23E2811F00BF073C /* Settings_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB60D23E2811F00BF073C /* Settings_VC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +45,7 @@
 		F1A1729723D90E3000DCBEDC /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		F1A1729B23D9332200DCBEDC /* AddPet_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPet_VC.swift; sourceTree = "<group>"; };
 		F1A1729D23DBF0F300DCBEDC /* HomeScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCell.swift; sourceTree = "<group>"; };
-		F1DDB60B23E00B9400BF073C /* Settings_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings_VC.swift; sourceTree = "<group>"; };
+		F1DDB60D23E2811F00BF073C /* Settings_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings_VC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +119,7 @@
 				F1A1728E23D829E900DCBEDC /* SignUp_VC.swift */,
 				F1A1729023D82A0200DCBEDC /* Landing_VC.swift */,
 				F1A1729B23D9332200DCBEDC /* AddPet_VC.swift */,
-				F1DDB60B23E00B9400BF073C /* Settings_VC.swift */,
+				F1DDB60D23E2811F00BF073C /* Settings_VC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -260,7 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1A1729C23D9332200DCBEDC /* AddPet_VC.swift in Sources */,
-				F1DDB60C23E00B9400BF073C /* Settings_VC.swift in Sources */,
+				F1DDB60E23E2811F00BF073C /* Settings_VC.swift in Sources */,
 				F1297FEC23D2543300E3736E /* AppDelegate.swift in Sources */,
 				F1A1729E23DBF0F300DCBEDC /* HomeScreenCell.swift in Sources */,
 				F1297FEE23D2543300E3736E /* SceneDelegate.swift in Sources */,
