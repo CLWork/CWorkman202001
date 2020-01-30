@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseStorage
+import FirebaseDatabase
 
 private let g_cellID1 = "cell_ID_1"
 class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -22,6 +23,7 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var petImage: UIImage?
     var petName = "Test"
     var age = 0
+    var dbRef: DatabaseReference?
     
     
     override func viewDidLoad() {
@@ -31,10 +33,16 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //reference to realtime database
+        dbRef = Database.database().reference()
     }
     
+    
     //MARK: Helper Methods
-    func getPetInformation(){
+    
+    //retrieve pet image
+    func getPetImage(){
         
         let uid = getUID()
         if uid != nil{
@@ -51,7 +59,17 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
+    //pull pet info
+    func getPetInformation(){
+        
+        dbRef?.child("Users").child("Pets").observe(.value, with: { (snapshot) in
+            print(snapshot)
+        })
+        
+    }
 
+    //retrieves current user's ID
     func getUID() -> String?{
         let user = Auth.auth().currentUser
         if let user = user {
@@ -62,15 +80,18 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     // MARK: Protocols
+    
+    //how many sections
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    //cell configuration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: g_cellID1, for: indexPath) as? HomeScreenCell else {return tableView.dequeueReusableCell(withIdentifier: g_cellID1, for: indexPath) }
         
-        cell.petPhoto.image = petImage
+        cell.petPhoto.image = UIImage(named: "placeholder")
         cell.ageLabel.text = "Age: \(age.description)"
         cell.petNameLabel.text = petName
         

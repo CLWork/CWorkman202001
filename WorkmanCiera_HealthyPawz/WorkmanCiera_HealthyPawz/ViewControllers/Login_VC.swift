@@ -72,6 +72,12 @@ class Login_VC: UIViewController {
             
             return "Passwords must be 8 characters with 1 number and 1 special character."
         }
+        
+        let email = emailTF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if utilities.isEmailVallid(email) == false{
+            return "Please make sure to use the valid email format: email@domain.com!"
+        }
+        
         return nil
     }
     
@@ -92,14 +98,4 @@ class Login_VC: UIViewController {
         
     }
 
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
