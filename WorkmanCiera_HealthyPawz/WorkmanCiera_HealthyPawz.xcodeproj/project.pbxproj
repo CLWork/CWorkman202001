@@ -24,6 +24,7 @@
 		F1A1729E23DBF0F300DCBEDC /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1729D23DBF0F300DCBEDC /* HomeScreenCell.swift */; };
 		F1DDB60E23E2811F00BF073C /* Settings_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB60D23E2811F00BF073C /* Settings_VC.swift */; };
 		F1DDB61023E2858600BF073C /* AddNote_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB60F23E2858600BF073C /* AddNote_VC.swift */; };
+		F1DDB61223E56F6D00BF073C /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB61123E56F6D00BF073C /* Pets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		F1A1729D23DBF0F300DCBEDC /* HomeScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCell.swift; sourceTree = "<group>"; };
 		F1DDB60D23E2811F00BF073C /* Settings_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings_VC.swift; sourceTree = "<group>"; };
 		F1DDB60F23E2858600BF073C /* AddNote_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNote_VC.swift; sourceTree = "<group>"; };
+		F1DDB61123E56F6D00BF073C /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				F129800123D2550C00E3736E /* GoogleService-Info.plist */,
 				F1A1729723D90E3000DCBEDC /* Utilities.swift */,
 				F1A1729D23DBF0F300DCBEDC /* HomeScreenCell.swift */,
+				F1DDB61123E56F6D00BF073C /* Pets.swift */,
 			);
 			path = WorkmanCiera_HealthyPawz;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				F1297FEC23D2543300E3736E /* AppDelegate.swift in Sources */,
 				F1A1729E23DBF0F300DCBEDC /* HomeScreenCell.swift in Sources */,
 				F1297FEE23D2543300E3736E /* SceneDelegate.swift in Sources */,
+				F1DDB61223E56F6D00BF073C /* Pets.swift in Sources */,
 				F1A1728F23D829E900DCBEDC /* SignUp_VC.swift in Sources */,
 				F1A1729123D82A0200DCBEDC /* Landing_VC.swift in Sources */,
 				F1A1728423D8077300DCBEDC /* Pets_VC.swift in Sources */,

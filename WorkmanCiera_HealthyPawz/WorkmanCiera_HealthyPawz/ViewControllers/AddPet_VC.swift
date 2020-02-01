@@ -30,6 +30,10 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     var storage = Storage.storage()
     var storageRef = Storage.storage().reference()
     var petImage: UIImage?
+    var petImageName: String?
+    let petName = ""
+    let age = ""
+    let weight = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,22 +68,29 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             let age = ageTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             let weight = weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             
-            //Saves Pet data within the user's UID node in the database.
+            //Saves Pet data within it's own tree with uid saved for retrieval.
             let user = Auth.auth().currentUser
             if let user = user {
                 let uid = user.uid
                 
-                self.ref.child("Users/\(uid)/Pets/petName").setValue(petName)
-                self.ref.child("Users/\(uid)/Pets/age").setValue(age)
-                self.ref.child("Users/\(uid)/Pets/weight").setValue(weight)
-                self.ref.child("Users/\(uid)/Pets/species").setValue(selectedBreed)
-                self.ref.child("Users/\(uid)/Pets/gender").setValue(selectedGender)
+                let childName = "\(uid)_\(petName!)"
                 
-                if petImage != nil{
-                    uploadImage(uid, petName: petName!)
+                
+                if self.petImage != nil{
+                    self.uploadImage(uid, petName: petName!)
                 }
                 
+                
+                self.ref.child("Pets/\(childName)/uid").setValue(uid)
+                self.ref.child("Pets/\(childName)/petName").setValue(petName)
+                self.ref.child("Pets/\(childName)/age").setValue(age)
+                self.ref.child("Pets/\(childName)/weight").setValue(weight)
+                self.ref.child("Pets/\(childName)/species").setValue(selectedBreed)
+                self.ref.child("Pets/\(childName)/gender").setValue(selectedGender)
+                self.ref.child("Pets/\(childName)/petImageName").setValue(petImageName)
+                
                 self.moveToHomeVC()
+                
             } else{
                 
                 self.alert("Unable to add pet information.")
@@ -139,7 +150,9 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             if let error = error{
                 self.alert(error.localizedDescription)
             } else{
-                print("Completed! Got this back: \(String(describing: downloadMetadata))")
+                self.petImageName = downloadMetadata?.name
+                print(self.petImageName!)
+                
             }
         }
     }
@@ -177,7 +190,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         case 1:
             return genderArray.count
         default:
-            print("Error!")
+            print("Error loading Picker counts!")
             return 1
         }
     }
@@ -191,7 +204,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             
             return genderArray[row]
         default:
-            print("Error!")
+            print("Error loading Picker values.")
             return breedArray[row]
         }
         
@@ -202,12 +215,10 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
        switch component{
        case 0:
            selectedBreed = breedArray[row]
-        print(selectedBreed)
        case 1:
            selectedGender = genderArray[row]
-        print(selectedGender)
        default:
-           print("Error!")
+           alert("Error using Picker, please try your selection again.")
        }
     }
 }

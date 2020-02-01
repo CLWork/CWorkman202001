@@ -14,6 +14,7 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet weak var weightTF: UITextField!
     @IBOutlet weak var playTimePicker: UIPickerView!
     @IBOutlet weak var noteTV: UITextView!
+    @IBOutlet weak var titleTF: UITextField!
     
     //Variables
     var playTimeHour = [String]()
@@ -29,6 +30,10 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         // Do any additional setup after loading the view.
         playTimeHour = ["Hour:", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11","12","13","14","15","16","17","18","19","20","21","22", "23"]
         playTimeMinute = ["Minute:", "5", "10", "15", "20", "25","30", "35","40", "45", "50", "55" ]
+        
+        playTimePicker.delegate = self
+        playTimePicker.dataSource = self
+        
     }
     
     
@@ -47,13 +52,20 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     
     @IBAction func cancelTapped(_ sender: Any) {
+        
     }
     
     //MARK: Helper Methods
     func validateFields() -> String?{
         
+        //makes sure the user enters details for notes.
         if noteTV.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
-            return "Please enter your note in the text box."
+            return "Please enter your note details in the text box."
+        }
+        
+        //makes sure the user names their note
+        if titleTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
+            return "A title is required, please enter a title."
         }
         
         //ensures picker values are nil if the user hasn't selected something from it or changed it to Hour/Minute

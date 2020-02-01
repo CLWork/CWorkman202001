@@ -16,7 +16,7 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     //Outlets
     @IBOutlet weak var tableView: UITableView!
-    
+   
     
     
     //Variables
@@ -24,11 +24,12 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var petName = "Test"
     var age = 0
     var dbRef: DatabaseReference?
+    var petArray = [Pets]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getPetInformation()
+       
         // Do any additional setup after loading the view.
         
         tableView.delegate = self
@@ -36,6 +37,10 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         //reference to realtime database
         dbRef = Database.database().reference()
+        
+        
+         getPetInformation()
+         getPetImage()
     }
     
     
@@ -46,7 +51,8 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let uid = getUID()
         if uid != nil{
-            let storageRef = Storage.storage().reference(withPath: "images/\(uid!)Sea")
+            for pet in petArray{
+                let storageRef = Storage.storage().reference(withPath: "images/\(uid!)\(pet.name)")
             storageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
                 if let error = error {
                     print(error.localizedDescription)
@@ -55,17 +61,49 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 if let data = data {
                     self.petImage = UIImage(data: data)
+                    print("Successfully found image!")
+                    self.tableView.reloadData()
                 }
             }
+        }
         }
     }
     
     //pull pet info
     func getPetInformation(){
         
-        dbRef?.child("Users").child("Pets").observe(.value, with: { (snapshot) in
-            print(snapshot)
-        })
+        let uid = getUID()
+        if uid != nil{
+            dbRef?.child("Pets").observe(.value, with: { (snapshot) in
+                if let listOfPets = snapshot.value as? [String: Any]{
+                    for (_, petObj) in listOfPets{
+                        if let petObj = petObj as? [String: Any]{
+                            let userID = petObj["uid"] as? String
+                            
+                            if userID == uid{
+                                print("\n\nFound matching pet")
+                                guard let petName = petObj["petName"] as? String,
+                                    let petAge = petObj["age"] as? String,
+                                    let petWeight = petObj["weight"] as? String,
+                                    let petSpecies = petObj["species"] as? String,
+                                    let petGender = petObj["gender"] as? String
+                                    else {continue}
+                                
+                                let newPet = Pets(pName: petName, pAge: petAge, pWeight: petWeight, pUid: userID!, pSpecies: petSpecies, pGender: petGender)
+                                self.petArray.append(newPet)
+                                self.tableView.reloadData()
+                            }
+                                
+                            else {
+                                
+                                print("No matching pet found")
+                            }
+                        }
+                    }
+                    
+                }
+            })
+        }
         
     }
 
@@ -83,7 +121,7 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //how many sections
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return petArray.count
     }
     
     //cell configuration
@@ -92,8 +130,8 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: g_cellID1, for: indexPath) as? HomeScreenCell else {return tableView.dequeueReusableCell(withIdentifier: g_cellID1, for: indexPath) }
         
         cell.petPhoto.image = UIImage(named: "placeholder")
-        cell.ageLabel.text = "Age: \(age.description)"
-        cell.petNameLabel.text = petName
+        cell.ageLabel.text = "Age: \(petArray[indexPath.row].age)"
+        cell.petNameLabel.text = petArray[indexPath.row].name
         
         return cell
     }

@@ -2,31 +2,29 @@
 //  Pets.swift
 //  WorkmanCiera_HealthyPawz
 //
-//  Created by Ciera on 1/22/20.
+//  Created by Ciera on 2/1/20.
 //  Copyright © 2020 Ciera Workman. All rights reserved.
 //
 
 import Foundation
-
 class Pets{
     
-    //Member variables
-    //Required information
-    var uid: String
     var name: String
+    var age: String
+    var weight: String
+    var uid: String
     var species: String
-    var age: Int
-    var weight: Int
+    var gender: String
     
-    //Optional Information
-    var imgURL: String?
     
-    //initializer
-    init(uid: String, name: String, species: String, age: Int, weight: Int){
-        self.uid = uid
-        self.name = name
-        self.species = species
-        self.age = age
-        self.weight = weight
+    
+    init(pName: String, pAge: String, pWeight: String, pUid: String, pSpecies: String, pGender: String){
+        
+        self.name = pName
+        self.age = pAge
+        self.weight = pWeight
+        self.uid = pUid
+        self.species = pSpecies
+        self.gender = pGender
     }
 }
