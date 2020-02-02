@@ -15,10 +15,11 @@ class Pets{
     var uid: String
     var species: String
     var gender: String
+    var imageName: String
     
     
     
-    init(pName: String, pAge: String, pWeight: String, pUid: String, pSpecies: String, pGender: String){
+    init(pName: String, pAge: String, pWeight: String, pUid: String, pSpecies: String, pGender: String, pImageName: String){
         
         self.name = pName
         self.age = pAge
@@ -26,5 +27,6 @@ class Pets{
         self.uid = pUid
         self.species = pSpecies
         self.gender = pGender
+        self.imageName = pImageName
     }
 }

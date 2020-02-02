@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
     //Outlets
     @IBOutlet weak var weightTF: UITextField!
@@ -138,6 +138,25 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
        default:
            print("Error!")
        }
+    }
+    
+    //allows return key to switch textfields for the user
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField.tag{
+        case 0:
+            titleTF.resignFirstResponder()
+            weightTF.becomeFirstResponder()
+        case 1:
+            weightTF.resignFirstResponder()
+            noteTV.becomeFirstResponder()
+        case 2:
+            noteTV.resignFirstResponder()
+        default:
+            titleTF.becomeFirstResponder()
+        }
+        
+        return true
     }
 
 }

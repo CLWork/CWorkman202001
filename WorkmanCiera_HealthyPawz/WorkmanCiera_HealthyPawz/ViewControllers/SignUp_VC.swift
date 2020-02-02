@@ -11,7 +11,7 @@ import FirebaseAuth
 import Firebase
 import FirebaseDatabase
 
-class SignUp_VC: UIViewController {
+class SignUp_VC: UIViewController, UITextFieldDelegate {
 
     //Outlets
     @IBOutlet weak var firstNameTF: UITextField!
@@ -111,5 +111,27 @@ class SignUp_VC: UIViewController {
        present(alert, animated: true, completion: nil)
        
    }
+    //allows return key to switch textfields for the user
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField.tag{
+        case 0:
+            firstNameTF.resignFirstResponder()
+            lastNameTF.becomeFirstResponder()
+        case 1:
+            lastNameTF.resignFirstResponder()
+            emailTF.becomeFirstResponder()
+        case 2:
+            emailTF.resignFirstResponder()
+            passwordTF.becomeFirstResponder()
+        case 3:
+            passwordTF.resignFirstResponder()
+            
+        default:
+            firstNameTF.becomeFirstResponder()
+        }
+        
+        return true
+    }
 
 }

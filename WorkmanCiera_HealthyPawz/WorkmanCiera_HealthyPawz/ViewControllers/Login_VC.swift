@@ -97,5 +97,22 @@ class Login_VC: UIViewController {
         present(alert, animated: true, completion: nil)
         
     }
+    
+    //allows return key to switch textfields for the user
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField.tag{
+        case 0:
+            emailTF.resignFirstResponder()
+            passwordTF.becomeFirstResponder()
+        case 1:
+           passwordTF.resignFirstResponder()
+       
+        default:
+            emailTF.becomeFirstResponder()
+        }
+        
+        return true
+    }
 
 }

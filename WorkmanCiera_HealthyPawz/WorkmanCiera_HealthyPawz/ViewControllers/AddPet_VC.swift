@@ -11,19 +11,20 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource {
+class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate {
 
     //Outlets
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var ageTF: UITextField!
-    @IBOutlet weak var breedPicker: UIPickerView!
+    @IBOutlet weak var speciesPicker: UIPickerView!
     @IBOutlet weak var petImageView: UIImageView!
     @IBOutlet weak var weightTF: UITextField!
+    @IBOutlet weak var addPetBttn: UIButton!
     
     //Variables
     let imagePicker = UIImagePickerController()
-    var breedArray = [String]()
-    var selectedBreed = ""
+    var speciesArray = [String]()
+    var selectedSpecies = ""
     var genderArray = [String]()
     var selectedGender = ""
     var ref: DatabaseReference!
@@ -34,6 +35,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     let petName = ""
     let age = ""
     let weight = ""
+    var isImageSavedToStorage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +44,12 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         ref = Database.database().reference()
         
         //Populate arrays for the picker
-        breedArray = ["Breed:","Cat", "Dog", "Bird", "Rabbit", "Rodent", "Ferret"]
+        speciesArray = ["Breed:","Cat", "Dog", "Bird", "Rabbit", "Rodent", "Ferret"]
         genderArray = ["Gender:", "Male", "Female", "Male Neutered", "Female Spayed"]
         
-        breedPicker.delegate = self
-        breedPicker.dataSource = self
+        //
+        speciesPicker.delegate = self
+        speciesPicker.dataSource = self
         
         imagePicker.delegate = self
         imagePicker.sourceType = .savedPhotosAlbum
@@ -54,48 +57,35 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     //MARK: Actions
+    
+    
     @IBAction func addPetTapped(_ sender: Any) {
+        
         let error = validateFields()
         
         if error != nil{
             
             alert(error!)
         }
-        else
-        {
-            //captures entered information after validation.
-            let petName = nameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            let age = ageTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            let weight = weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        else{
             
-            //Saves Pet data within it's own tree with uid saved for retrieval.
+            let petName = nameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             let user = Auth.auth().currentUser
             if let user = user {
                 let uid = user.uid
                 
-                let childName = "\(uid)_\(petName!)"
-                
-                
-                if self.petImage != nil{
-                    self.uploadImage(uid, petName: petName!)
+                if petImage != nil{
+                    uploadImage(uid, petName: petName!)
+                }
+                else{
+                    savePetInfoToDB(petName: petName!, uid: uid)
                 }
                 
-                
-                self.ref.child("Pets/\(childName)/uid").setValue(uid)
-                self.ref.child("Pets/\(childName)/petName").setValue(petName)
-                self.ref.child("Pets/\(childName)/age").setValue(age)
-                self.ref.child("Pets/\(childName)/weight").setValue(weight)
-                self.ref.child("Pets/\(childName)/species").setValue(selectedBreed)
-                self.ref.child("Pets/\(childName)/gender").setValue(selectedGender)
-                self.ref.child("Pets/\(childName)/petImageName").setValue(petImageName)
-                
-                self.moveToHomeVC()
-                
-            } else{
-                
-                self.alert("Unable to add pet information.")
             }
+            
         }
+       
     }
     
     //Pulls up the image library on the device and allows a user to select an image
@@ -113,7 +103,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
         let weightInt = Int(weightTF.text ?? "0")
         
-        if selectedGender == "" || selectedGender == "Gender:" || selectedBreed == "" || selectedBreed == "Breed" || nameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" || weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "0" || weightInt == 0{
+        if selectedGender == "" || selectedGender == "Gender:" || selectedSpecies == "" || selectedSpecies == "Breed" || nameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "" || weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "0" || weightInt == 0{
             
             return "You must enter a name for your pet, select a species, enter a weight above 0 and a gender!"
         }
@@ -146,29 +136,66 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         let uploadMetadata = StorageMetadata.init()
         uploadMetadata.contentType = "image/jpeg"
         
-        uploadReference.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
+         let uploadTaskRef = uploadReference.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
+            
             if let error = error{
-                self.alert(error.localizedDescription)
-            } else{
-                self.petImageName = downloadMetadata?.name
-                print(self.petImageName!)
                 
+                self.alert(error.localizedDescription)
+                
+            } else{
+                
+                self.petImageName = downloadMetadata?.name
+                self.isImageSavedToStorage = true
+                self.savePetInfoToDB(petName: petName, uid: userID)
             }
+            
         }
+        
+        uploadTaskRef.observe(.progress) { (snapshot) in
+            guard let completionPct = snapshot.progress?.fractionCompleted else {return}
+            print(completionPct)
+            
+        }
+        
+        
     }
     
-     //MARK: Protocols
+    //saves to database
+    func savePetInfoToDB(petName: String, uid: String){
+        
+        
+        print("petImageName: \(petImageName ?? "Image Name Not found")")
+        //captures entered information after validation.
+        let age = ageTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let weight = weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        //specfified node name format.
+        let childName = "\(uid)_\(petName)"
+        
+        //enters user's pet information into the database
+        ref.child("Pets/\(childName)/uid").setValue(uid)
+        ref.child("Pets/\(childName)/petName").setValue(petName)
+        ref.child("Pets/\(childName)/age").setValue(age)
+        ref.child("Pets/\(childName)/weight").setValue(weight)
+        ref.child("Pets/\(childName)/species").setValue(selectedSpecies)
+        ref.child("Pets/\(childName)/gender").setValue(selectedGender)
+        ref.child("Pets/\(childName)/petImageName").setValue(petImageName)
+        
+        moveToHomeVC()
+    }
+    
+    //MARK: Protocols
     
     //user picks an image and populates the image view
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-               petImageView.image = pickedImage
-               petImage = pickedImage
-            
-           }
         
-           dismiss(animated: true, completion: nil)
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            petImageView.image = pickedImage
+            petImage = pickedImage
+            
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
     
     //dismisses image picker when cancel is pressed.
@@ -186,7 +213,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
         switch component{
         case 0:
-            return breedArray.count
+            return speciesArray.count
         case 1:
             return genderArray.count
         default:
@@ -199,13 +226,13 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component{
         case 0:
-            return breedArray[row]
+            return speciesArray[row]
         case 1:
             
             return genderArray[row]
         default:
             print("Error loading Picker values.")
-            return breedArray[row]
+            return speciesArray[row]
         }
         
     }
@@ -214,11 +241,32 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
        switch component{
        case 0:
-           selectedBreed = breedArray[row]
+           selectedSpecies = speciesArray[row]
        case 1:
            selectedGender = genderArray[row]
        default:
            alert("Error using Picker, please try your selection again.")
        }
+    }
+    //allows return key to switch textfields for the user
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField.tag{
+        case 0:
+            nameTF.resignFirstResponder()
+            ageTF.becomeFirstResponder()
+            
+        case 1:
+            ageTF.resignFirstResponder()
+            weightTF.becomeFirstResponder()
+            
+        case 2:
+            weightTF.resignFirstResponder()
+        
+        default:
+            nameTF.becomeFirstResponder()
+            
+        }
+        
+        return true
     }
 }

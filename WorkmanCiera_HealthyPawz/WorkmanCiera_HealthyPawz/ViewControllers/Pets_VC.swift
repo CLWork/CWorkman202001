@@ -20,7 +20,7 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     //Variables
-    var petImage: UIImage?
+    var petImagesArray = [UIImage]()
     var petName = "Test"
     var age = 0
     var dbRef: DatabaseReference?
@@ -39,20 +39,25 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         dbRef = Database.database().reference()
         
         
-         getPetInformation()
-         getPetImage()
+         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        getPetInformation()
+        
     }
     
     
     //MARK: Helper Methods
     
     //retrieve pet image
-    func getPetImage(){
+    func getPetImage(petImageName: String){
         
         let uid = getUID()
         if uid != nil{
-            for pet in petArray{
-                let storageRef = Storage.storage().reference(withPath: "images/\(uid!)\(pet.name)")
+            for _ in petArray{
+                let storageRef = Storage.storage().reference(withPath: "images/\(petImageName)")
             storageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
                 if let error = error {
                     print(error.localizedDescription)
@@ -60,7 +65,8 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 if let data = data {
-                    self.petImage = UIImage(data: data)
+                    self.petImagesArray.append(UIImage(data: data) ?? UIImage(named: "placeholder")!)
+                    
                     print("Successfully found image!")
                     self.tableView.reloadData()
                 }
@@ -86,11 +92,13 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                                     let petAge = petObj["age"] as? String,
                                     let petWeight = petObj["weight"] as? String,
                                     let petSpecies = petObj["species"] as? String,
-                                    let petGender = petObj["gender"] as? String
+                                    let petGender = petObj["gender"] as? String,
+                                    let petImageName = petObj["petImageName"] as? String
                                     else {continue}
                                 
-                                let newPet = Pets(pName: petName, pAge: petAge, pWeight: petWeight, pUid: userID!, pSpecies: petSpecies, pGender: petGender)
+                                let newPet = Pets(pName: petName, pAge: petAge, pWeight: petWeight, pUid: userID!, pSpecies: petSpecies, pGender: petGender, pImageName: petImageName)
                                 self.petArray.append(newPet)
+                                self.getPetImage(petImageName: petImageName)
                                 self.tableView.reloadData()
                             }
                                 
@@ -129,10 +137,15 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: g_cellID1, for: indexPath) as? HomeScreenCell else {return tableView.dequeueReusableCell(withIdentifier: g_cellID1, for: indexPath) }
         
-        cell.petPhoto.image = UIImage(named: "placeholder")
         cell.ageLabel.text = "Age: \(petArray[indexPath.row].age)"
         cell.petNameLabel.text = petArray[indexPath.row].name
         
+        if petImagesArray.count == 0{
+        cell.petPhoto.image = UIImage(named: "placeholder")
+        } else{
+            cell.petPhoto.image = petImagesArray[indexPath.row]
+        }
+        print("tableCell Loaded.")
         return cell
     }
 
