@@ -25,6 +25,7 @@
 		F1DDB60E23E2811F00BF073C /* Settings_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB60D23E2811F00BF073C /* Settings_VC.swift */; };
 		F1DDB61023E2858600BF073C /* AddNote_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB60F23E2858600BF073C /* AddNote_VC.swift */; };
 		F1DDB61223E56F6D00BF073C /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB61123E56F6D00BF073C /* Pets.swift */; };
+		F1DDB61423E6C15E00BF073C /* PetProfile_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB61323E6C15E00BF073C /* PetProfile_VC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		F1DDB60D23E2811F00BF073C /* Settings_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings_VC.swift; sourceTree = "<group>"; };
 		F1DDB60F23E2858600BF073C /* AddNote_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNote_VC.swift; sourceTree = "<group>"; };
 		F1DDB61123E56F6D00BF073C /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
+		F1DDB61323E6C15E00BF073C /* PetProfile_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile_VC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				F1A1729B23D9332200DCBEDC /* AddPet_VC.swift */,
 				F1DDB60D23E2811F00BF073C /* Settings_VC.swift */,
 				F1DDB60F23E2858600BF073C /* AddNote_VC.swift */,
+				F1DDB61323E6C15E00BF073C /* PetProfile_VC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				F1A1729E23DBF0F300DCBEDC /* HomeScreenCell.swift in Sources */,
 				F1297FEE23D2543300E3736E /* SceneDelegate.swift in Sources */,
 				F1DDB61223E56F6D00BF073C /* Pets.swift in Sources */,
+				F1DDB61423E6C15E00BF073C /* PetProfile_VC.swift in Sources */,
 				F1A1728F23D829E900DCBEDC /* SignUp_VC.swift in Sources */,
 				F1A1729123D82A0200DCBEDC /* Landing_VC.swift in Sources */,
 				F1A1728423D8077300DCBEDC /* Pets_VC.swift in Sources */,

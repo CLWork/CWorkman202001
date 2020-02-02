@@ -25,11 +25,12 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var age = 0
     var dbRef: DatabaseReference?
     var petArray = [Pets]()
+    var selectedPet: Pets?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        petImagesArray.removeAll()
         // Do any additional setup after loading the view.
         
         tableView.delegate = self
@@ -56,7 +57,7 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let uid = getUID()
         if uid != nil{
-            for _ in petArray{
+            for pet in petArray{
                 let storageRef = Storage.storage().reference(withPath: "images/\(petImageName)")
             storageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
                 if let error = error {
@@ -65,9 +66,11 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 if let data = data {
-                    self.petImagesArray.append(UIImage(data: data) ?? UIImage(named: "placeholder")!)
-                    
+                    let foundImage = UIImage(data: data) ?? UIImage(named: "placeholder")
+                    self.petImagesArray.append(foundImage!)
+                    pet.image = foundImage!
                     print("Successfully found image!")
+                    
                     self.tableView.reloadData()
                 }
             }
@@ -125,6 +128,12 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return nil
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? PetProfile_VC{
+            destination.selectedPet = selectedPet
+        }
+    }
+    
     // MARK: Protocols
     
     //how many sections
@@ -140,13 +149,23 @@ class Pets_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.ageLabel.text = "Age: \(petArray[indexPath.row].age)"
         cell.petNameLabel.text = petArray[indexPath.row].name
         
+        cell.petPhoto.contentMode = .scaleAspectFill
+        
         if petImagesArray.count == 0{
         cell.petPhoto.image = UIImage(named: "placeholder")
-        } else{
+        } else if petImagesArray.count == 1{
+            cell.petPhoto.image = petImagesArray[0]
+        } else if petImagesArray.count > 1{
             cell.petPhoto.image = petImagesArray[indexPath.row]
         }
         print("tableCell Loaded.")
         return cell
+    }
+    
+    //figures which pet has been selected based off of row index selection
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPet = petArray[indexPath.row]
+        print(selectedPet ?? "No pet selected.")
     }
 
 }

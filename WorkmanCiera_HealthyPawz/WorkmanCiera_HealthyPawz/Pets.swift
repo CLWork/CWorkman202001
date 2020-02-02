@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 class Pets{
     
     var name: String
@@ -16,6 +18,7 @@ class Pets{
     var species: String
     var gender: String
     var imageName: String
+    var image: UIImage?
     
     
     
