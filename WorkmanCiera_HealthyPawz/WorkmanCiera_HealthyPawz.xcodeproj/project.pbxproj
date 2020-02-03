@@ -14,6 +14,7 @@
 		F1297FFA23D2543400E3736E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1297FF823D2543400E3736E /* LaunchScreen.storyboard */; };
 		F129800223D2550C00E3736E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F129800123D2550C00E3736E /* GoogleService-Info.plist */; };
 		F156A8CE1506523CF313C774 /* Pods_WorkmanCiera_HealthyPawz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92917F71A5BDE4D647131F61 /* Pods_WorkmanCiera_HealthyPawz.framework */; };
+		F17F356623E7CB64004AA13F /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17F356523E7CB64004AA13F /* Notes.swift */; };
 		F1A1728423D8077300DCBEDC /* Pets_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1728323D8077300DCBEDC /* Pets_VC.swift */; };
 		F1A1728D23D829D500DCBEDC /* Login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1728C23D829D500DCBEDC /* Login_VC.swift */; };
 		F1A1728F23D829E900DCBEDC /* SignUp_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A1728E23D829E900DCBEDC /* SignUp_VC.swift */; };
@@ -26,6 +27,8 @@
 		F1DDB61023E2858600BF073C /* AddNote_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB60F23E2858600BF073C /* AddNote_VC.swift */; };
 		F1DDB61223E56F6D00BF073C /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB61123E56F6D00BF073C /* Pets.swift */; };
 		F1DDB61423E6C15E00BF073C /* PetProfile_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB61323E6C15E00BF073C /* PetProfile_VC.swift */; };
+		F1DDB61623E6E3B500BF073C /* Notebook_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB61523E6E3B500BF073C /* Notebook_VC.swift */; };
+		F1DDB61823E6E8CF00BF073C /* PetNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DDB61723E6E8CF00BF073C /* PetNotes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,7 @@
 		F1297FF923D2543400E3736E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1297FFB23D2543400E3736E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F129800123D2550C00E3736E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F17F356523E7CB64004AA13F /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		F1A1728323D8077300DCBEDC /* Pets_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets_VC.swift; sourceTree = "<group>"; };
 		F1A1728C23D829D500DCBEDC /* Login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_VC.swift; sourceTree = "<group>"; };
 		F1A1728E23D829E900DCBEDC /* SignUp_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp_VC.swift; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 		F1DDB60F23E2858600BF073C /* AddNote_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNote_VC.swift; sourceTree = "<group>"; };
 		F1DDB61123E56F6D00BF073C /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
 		F1DDB61323E6C15E00BF073C /* PetProfile_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile_VC.swift; sourceTree = "<group>"; };
+		F1DDB61523E6E3B500BF073C /* Notebook_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notebook_VC.swift; sourceTree = "<group>"; };
+		F1DDB61723E6E8CF00BF073C /* PetNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetNotes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,8 @@
 				F1A1729723D90E3000DCBEDC /* Utilities.swift */,
 				F1A1729D23DBF0F300DCBEDC /* HomeScreenCell.swift */,
 				F1DDB61123E56F6D00BF073C /* Pets.swift */,
+				F1DDB61723E6E8CF00BF073C /* PetNotes.swift */,
+				F17F356523E7CB64004AA13F /* Notes.swift */,
 			);
 			path = WorkmanCiera_HealthyPawz;
 			sourceTree = "<group>";
@@ -129,6 +137,7 @@
 				F1DDB60D23E2811F00BF073C /* Settings_VC.swift */,
 				F1DDB60F23E2858600BF073C /* AddNote_VC.swift */,
 				F1DDB61323E6C15E00BF073C /* PetProfile_VC.swift */,
+				F1DDB61523E6E3B500BF073C /* Notebook_VC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -279,8 +288,11 @@
 				F1A1729123D82A0200DCBEDC /* Landing_VC.swift in Sources */,
 				F1A1728423D8077300DCBEDC /* Pets_VC.swift in Sources */,
 				F1DDB61023E2858600BF073C /* AddNote_VC.swift in Sources */,
+				F1DDB61623E6E3B500BF073C /* Notebook_VC.swift in Sources */,
+				F1DDB61823E6E8CF00BF073C /* PetNotes.swift in Sources */,
 				F1A1729823D90E3000DCBEDC /* Utilities.swift in Sources */,
 				F1A1728D23D829D500DCBEDC /* Login_VC.swift in Sources */,
+				F17F356623E7CB64004AA13F /* Notes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

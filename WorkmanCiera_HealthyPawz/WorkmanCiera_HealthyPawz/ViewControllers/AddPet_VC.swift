@@ -35,7 +35,6 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     let petName = ""
     let age = ""
     let weight = ""
-    var isImageSavedToStorage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +57,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     //MARK: Actions
     
-    
+    //adds pet info to DB and transitions when complete.
     @IBAction func addPetTapped(_ sender: Any) {
         
         let error = validateFields()
@@ -136,7 +135,7 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         let uploadMetadata = StorageMetadata.init()
         uploadMetadata.contentType = "image/jpeg"
         
-         let uploadTaskRef = uploadReference.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
+          uploadReference.putData(imageData, metadata: uploadMetadata) { (downloadMetadata, error) in
             
             if let error = error{
                 
@@ -145,26 +144,17 @@ class AddPet_VC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             } else{
                 
                 self.petImageName = downloadMetadata?.name
-                self.isImageSavedToStorage = true
+               
                 self.savePetInfoToDB(petName: petName, uid: userID)
             }
             
         }
         
-        uploadTaskRef.observe(.progress) { (snapshot) in
-            guard let completionPct = snapshot.progress?.fractionCompleted else {return}
-            print(completionPct)
-            
-        }
-        
-        
     }
     
     //saves to database
     func savePetInfoToDB(petName: String, uid: String){
-        
-        
-        print("petImageName: \(petImageName ?? "Image Name Not found")")
+
         //captures entered information after validation.
         let age = ageTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         let weight = weightTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)

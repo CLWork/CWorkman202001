@@ -7,3 +7,24 @@
 //
 
 import Foundation
+
+class PetNotes{
+    
+    //member variables - required
+    let petName: String
+    let title: String
+    let noteDetails: String
+    
+    //optional member variables
+    var weight: String?
+    var pTHour: String?
+    var pTMin: String?
+    
+    //initializer
+    init(_petName: String, _title: String, _noteDetails: String){
+        self.petName = _petName
+        self.title = _title
+        self.noteDetails = _noteDetails
+    }
+    
+}

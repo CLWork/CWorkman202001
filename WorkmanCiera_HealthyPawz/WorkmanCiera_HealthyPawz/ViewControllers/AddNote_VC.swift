@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
@@ -15,6 +17,7 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet weak var playTimePicker: UIPickerView!
     @IBOutlet weak var noteTV: UITextView!
     @IBOutlet weak var titleTF: UITextField!
+    @IBOutlet weak var petPicker: UIPickerView!
     
     //Variables
     var playTimeHour = [String]()
@@ -22,7 +25,11 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     var selectedHour: String?
     var selectedMin: String?
     var noteBody = ""
+    var noteTitle = ""
     var weight: String?
+    var ref: DatabaseReference!
+    var userPetsArray = [Pets]()
+    var selectedPet: Pets?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +40,14 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         playTimePicker.delegate = self
         playTimePicker.dataSource = self
+        
+        petPicker.delegate = self
+        petPicker.dataSource = self
+        
+        
+        ref = Database.database().reference()
+        
+        getPetInformation()
         
     }
     
@@ -45,17 +60,80 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             alert(error!)
         } else{
             
-            
+            addNoteToDB()
             
         }
     }
     
+    //MARK: Helper Methods
     
-    @IBAction func cancelTapped(_ sender: Any) {
+    func addNoteToDB(){
+        
+     let userID = getUID()
+        if userID != nil{
+            let childName = "\(userID!)_\(selectedPet!.name)_\(noteTitle)"
+              ref.child("Notes/\(childName)/title").setValue(noteTitle)
+            ref.child("Notes/\(childName)/uid").setValue(userID!)
+            ref.child("Notes/\(childName)/petName").setValue(selectedPet!.name)
+            ref.child("Notes/\(childName)/body").setValue(noteBody)
+            ref.child("Notes/\(childName)/weight").setValue(weight)
+            ref.child("Notes/\(childName)/hourly").setValue(playTimeHour)
+            ref.child("Notes/\(childName)/minute").setValue(playTimeMinute)
+        } else{
+            alert("Cannot add note, please try again!")
+        }
+              
         
     }
     
-    //MARK: Helper Methods
+    func getUID() -> String?{
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            return uid
+        }
+        return nil
+    }
+    
+    
+    func getPetInformation(){
+        
+        let uid = getUID()
+        if uid != nil{
+            ref?.child("Pets").observe(.value, with: { (snapshot) in
+                if let listOfPets = snapshot.value as? [String: Any]{
+                    for (_, petObj) in listOfPets{
+                        if let petObj = petObj as? [String: Any]{
+                            let userID = petObj["uid"] as? String
+                            
+                            if userID == uid{
+                                print("\n\nFound matching pet")
+                                guard let petName = petObj["petName"] as? String,
+                                    let petAge = petObj["age"] as? String,
+                                    let petWeight = petObj["weight"] as? String,
+                                    let petSpecies = petObj["species"] as? String,
+                                    let petGender = petObj["gender"] as? String,
+                                    let petImageName = petObj["petImageName"] as? String
+                                    else {continue}
+                                
+                                let newPet = Pets(pName: petName, pAge: petAge, pWeight: petWeight, pUid: userID!, pSpecies: petSpecies, pGender: petGender, pImageName: petImageName)
+                                self.userPetsArray.append(newPet)
+                            }
+                                
+                            else {
+                                
+                                print("No matching pet found")
+                            }
+                        }
+                    }
+                    
+                }
+            })
+        }
+        
+    }
+    
+    //makes sure required fields are not empty and handles any empty fields.
     func validateFields() -> String?{
         
         //makes sure the user enters details for notes.
@@ -96,11 +174,21 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     //tells picker how many columns
    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    switch pickerView.tag{
+    case 0:
         return 2
+    case 1:
+        return 1
+    default:
+        return 1
+    }
     }
     
     //tells picker how many rows per component
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView.tag{
+        case 0:
+            
         switch component{
         case 0:
             return playTimeHour.count
@@ -109,10 +197,20 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         default:
             return 1
         }
+            
+        case 1:
+            return userPetsArray.count
+            
+        default:
+            return 1
+        }
     }
     
     //pulls title for selected row
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView.tag{
+        case 0:
+            
         switch component{
         case 0:
             return playTimeHour[row]
@@ -123,11 +221,29 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             print("Error!")
             return playTimeHour[row]
         }
+            
+        case 1:
+            
+            switch component{
+            case 0:
+                return userPetsArray[row].name
+            default:
+                print("Error!")
+                return userPetsArray[row].name
+            }
+            
+        default:
+            return userPetsArray[row].name
+        }
         
     }
     
     // Capture the picker view selection
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView.tag{
+            
+        case 0:
+            
        switch component{
        case 0:
            selectedHour = playTimeHour[row]
@@ -138,6 +254,12 @@ class AddNote_VC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
        default:
            print("Error!")
        }
+            
+        case 1:
+            selectedPet = userPetsArray[row]
+        default:
+            print("Error!")
+        }
     }
     
     //allows return key to switch textfields for the user

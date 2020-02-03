@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Pets{
-    
+    //required
     var name: String
     var age: String
     var weight: String
@@ -18,10 +18,13 @@ class Pets{
     var species: String
     var gender: String
     var imageName: String
+    
+    //optional
     var image: UIImage?
+    var notes: [Notes]?
     
     
-    
+    //init
     init(pName: String, pAge: String, pWeight: String, pUid: String, pSpecies: String, pGender: String, pImageName: String){
         
         self.name = pName

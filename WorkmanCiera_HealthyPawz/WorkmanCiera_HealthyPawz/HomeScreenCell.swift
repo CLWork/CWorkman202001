@@ -25,8 +25,5 @@ class HomeScreenCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    @IBAction func addNoteTapped(_ sender: UIButton) {
-        
-    }
-    
+   
 }

@@ -45,3 +45,6 @@
 ##Known Bugs
   - Images are too big when pulled from Firebase Storage for the main page.
   - Selected table cell doesn't send Pets object to profile at the moment.
+  - SelectedPet object comes up as null and therefore the profile doesn't populate.
+  - Returning to pets screen causes a crash.
+ 
